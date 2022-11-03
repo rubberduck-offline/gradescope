@@ -15,7 +15,7 @@
 #define BLOCKED 2     /* waiting to join */
 #define EXIT 3        /* thread is dead */
 
-queue_t prev_q; // may not need this
+//queue_t prev_q; // may not need this
 queue_t ready_q;
 
 
@@ -146,7 +146,7 @@ int uthread_run(bool preemp, uthread_func_t func, void *arg) // create obj, crea
         uthread_yield();
     }
 
-    // queue_iterate(ready_q, queue_delete);
+    queue_destroy(ready_q);
 
     
 
@@ -155,15 +155,30 @@ int uthread_run(bool preemp, uthread_func_t func, void *arg) // create obj, crea
 }
 
 
-// void uthread_block(void)
-// {
-//     /* TODO Phase 4 */
-// }
+void uthread_block(void)
+{
+    /* TODO Phase 4 */
+    // change the state
+    current_thread->state = BLOCKED;
 
-// void uthread_unblock(struct uthread_tcb *uthread)
-// {
-//     /* TODO Phase 4 */
-// }
+    struct uthread_tcb *prev_thread;
+    struct uthread_tcb *next_thread;
+    queue_dequeue(ready_q, (void**)&next_thread); // dequeue ready queue to get the head
+    prev_thread = current_thread;
+    current_thread = next_thread;
+    uthread_ctx_switch(((struct uthread_tcb*)prev_thread)->uctx, ((struct uthread_tcb*)next_thread)->uctx);
+}
+
+void uthread_unblock(struct uthread_tcb *uthread)
+{
+    /* TODO Phase 4 */
+    // change the state
+    current_thread->state = READY;
+    // uthread here is the dequeue from waiting queue
+    // enqueue this thread to the ready queue
+    queue_enqueue(ready_q, uthread);
+
+}
 
 // Testing
 // void hello(void *arg)
