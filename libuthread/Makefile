@@ -10,7 +10,7 @@ all: $(lib)
 ## TODO: Phase 1
 
 # targets := queue uthread context
-objs := queue.o uthread.o context.o
+objs := queue.o uthread.o context.o sem.o
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pipe -MMD
