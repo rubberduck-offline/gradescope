@@ -83,7 +83,7 @@ The waiting queue schedules the semaphores. Semaphores take affect on the actual
 ### Reference and Testing
 
 Reference:
-⋅⋅* Lecture slides and Office Hours
+* Lecture slides and Office Hours
 
 `libuthread/Makefile` compiles all `.c` files into `.o` outputs and links to 
 the `libuthread.a`. Provided `apps/Makefile` generates executables for testing 
