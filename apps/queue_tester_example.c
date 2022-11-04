@@ -20,10 +20,7 @@ void test_create(void)
 {
 	fprintf(stderr, "*** TEST create ***\n");
 
-	queue_t q;
-
-    q = queue_create();
-	TEST_ASSERT(q != NULL);
+	TEST_ASSERT(queue_create() != NULL);
 }
 
 /* Enqueue/Dequeue simple */
@@ -40,60 +37,82 @@ void test_queue_simple(void)
 	TEST_ASSERT(ptr == &data);
 }
 
-/* Delete */
-void test_queue_delete(void)
-{
-	queue_t q;
-	int data = 3;
-	int delete = 5;
 
-	q = queue_create();
-	queue_enqueue(q, &data);
-	queue_enqueue(q, &delete);
-	queue_delete(q, &delete);
+void test_size(void){
+    //int *ptr;
+    int data1=3;
+    int data2=5;
+    queue_t q;
+    fprintf(stderr, "*** TEST enqueue ***\n");
+    q=queue_create();
+    queue_enqueue(q, &data1);
+    queue_enqueue(q, &data2);
+    TEST_ASSERT(queue_length(q)==2);
+}
+void test_null_size(){
+    queue_t q;
+    int * ptr;
+    fprintf(stderr, "*** TEST null delete ***\n");
+    q=NULL;
+    TEST_ASSERT(queue_length(q)==-1);
+}
+void test_empty_delete(){
+    queue_t q;
+    int data=3;
+    fprintf(stderr, "*** TEST empty delete ***\n");
+    q=queue_create();
+    
+    TEST_ASSERT(queue_delete(q, &data)==-1);
 }
 
-/* Callback function that increments items */
-static void iterator_inc(queue_t q, void *data)
-{
-    int *a = (int*)data;
-
-    if (*a == 42) {
-        queue_delete(q, data);
-    }
-    else {
-        *a += 1;
-    }
-    printf("\n");
+void test_null_dequeue(void){
+    queue_t q;
+    int * ptr;
+    fprintf(stderr, "*** TEST null delete ***\n");
+    q=NULL;
+    TEST_ASSERT(queue_dequeue(q, (void **)ptr)==-1);
 }
 
-void test_iterator(void)
-{
-	struct queue *p;
-	int value[] = {1, 2, 3, 4, 5, 42, 6, 7, 8, 9};
-	size_t i;
-
-	/* Initialize the queue and enqueue items */
-	p = queue_create();
-	for (i = 0; i < sizeof(value) / sizeof(value[0]); i++) {
-	    queue_enqueue(p, &value[i]);
-	    printf("value[%zu] is: %d\n", i, value[i]);
-	}
-
-
-	/* Increment every item of the queue, delete item '42' */
-	queue_iterate(p, iterator_inc);
-   
-   assert(value[0] == 2);
-   //assert(queue_length(q) == 9);
+void test_empty_dequeue(void){
+    queue_t q;
+    int * ptr;
+    fprintf(stderr, "*** TEST null delete ***\n");
+    q=queue_create();
+    TEST_ASSERT(queue_dequeue(q, (void **)ptr)==-1);
+}
+void test_null_data_enqueue(void){
+    queue_t q;
+    q=queue_create();
+    fprintf(stderr, "*** TEST null data enqueue ***\n");
+    TEST_ASSERT(queue_enqueue(q, NULL)==-1);
 }
 
+void test_null_function_iterate(void){
+    queue_t q;
+    q=queue_create();
+    fprintf(stderr, "*** TEST null function iterate ***\n");
+    TEST_ASSERT(queue_iterate(q, NULL)==-1);
+}
 
-
+void test_non_empty_destroy(void){
+    queue_t q;
+    int data=3;
+    q=queue_create();
+    queue_enqueue(q, &data);
+    fprintf(stderr, "*** TEST non_empty_destroy***\n");
+    TEST_ASSERT(queue_destroy(q)==-1);
+}
 int main(void)
 {
 	test_create();
 	test_queue_simple();
-
+    test_size();
+    test_null_size();
+    test_empty_delete();
+    test_null_dequeue();
+    test_empty_dequeue();
+    test_null_data_enqueue();
+    test_null_function_iterate();
+    test_non_empty_destroy();
 	return 0;
 }
