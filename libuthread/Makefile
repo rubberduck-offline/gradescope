@@ -1,13 +1,16 @@
 # Target library
 lib := libuthread.a
 
+# SRCS = libuthread/queue.c libuthread/uthread.c libuthread/context.c
+
 MAKEFLAGS += -rR
 all: $(lib)
 
 
 ## TODO: Phase 1
 
-objs := queue.o uthread.o context.o sem.o
+# targets := queue uthread context
+objs := queue.o uthread.o context.o sem.o preempt.o
 
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -pipe -MMD
