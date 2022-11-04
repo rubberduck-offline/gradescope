@@ -12,11 +12,11 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#include "private.h"
-#include "uthread.h"
+#include <private.h>
+#include <uthread.h>
 
 /* This flag controls termination of the main loop. */
-volatile sig_atomic_t keep_going = 1;
+//volatile sig_atomic_t keep_going = 1;
 
 void threadPreempted(void *arg)
 {
@@ -32,10 +32,7 @@ int main(void)
     int i=0;
     //uthread_run(false, threadPreempted, NULL);
     
-    
-    printf("This is main thread\n");
-    printf("now I will run preempt start\n");
-    preempt_start(false);
+    preempt_start(true);
     
     while (1)
         printf ("main thread: wait %d.\n ", i ++ );
