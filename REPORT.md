@@ -2,12 +2,16 @@
 
 ## Summary
 
-(REPORT OUTLINE FROM PROJECT 1)
-(EDIT LATER)
-
+The goal of this project is to build a basic user-level thread library `libuthread.a` for Linux. This library provides a complete interface for applications to creat and run independent threads concurrently. It is able to create new threads, schedule the execution threads in a round-robin fashion, and provide a thread synchronization API, namely semaphores (ECS 150_Project #2 - User-level thread library).
 
 
 ## Implementation
+
+The implementation of this program has three main parts:
+
+1. Implementing a queue container for system programming
+2. Implementing the thread management API `uthread.c` using internal context API `context.c` for applications to create, terminate, or manipulate threads
+3. Implementing the semaphore API `sem.c` to control the access to common resources by multiple threads
 
 
 
