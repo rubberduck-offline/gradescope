@@ -71,9 +71,9 @@ Performed unit test on `libuthread/queue.c` using `apps/queue_tester_example.c`.
 * 100% `libuthread/preempt.c` implemention
 * 100% `apps/test_preempt.c` implemention
 * Input to `libuthread/sem.c`
-⋅⋅⋅ First attempt copied straight from lecture slides, code does not work
-⋅⋅⋅ Second attempt built upon Aileen's code, passes `sem_simple.c` test case
-⋅⋅⋅ Work wasn't submit since both worked in parallel and Aileen's code passed
+⋅⋅⋅ First attempt copied straight from lecture slides, code does not work⋅⋅
+⋅⋅⋅ Second attempt built upon Aileen's code, passes `sem_simple.c` test case⋅⋅
+⋅⋅⋅ Work wasn't submit since both worked in parallel and Aileen's code passed⋅⋅
 * Resource collection
 
 ## License
