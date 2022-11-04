@@ -61,20 +61,20 @@ Performed unit test on `libuthread/queue.c` using `apps/queue_tester_example.c`.
 ## Partner Work Division
 
 ### Aileen
-⋅⋅* 100% `libuthread/queue.c` implementation
-⋅⋅* 100% `libuthread/uthread.c` implementation
-⋅⋅* 100% `libuthread/sem.c` implementation
-⋅⋅* 100% `libuthread/Makefile` implemention
-⋅⋅* 100% `REPORT.md`
+* 100% `libuthread/queue.c` implementation
+* 100% `libuthread/uthread.c` implementation
+* 100% `libuthread/sem.c` implementation
+* 100% `libuthread/Makefile` implemention
+* 100% `REPORT.md`
 
 ### Randy
-⋅⋅* 100% `libuthread/preempt.c` implemention
-⋅⋅* 100% `apps/test_preempt.c` implemention
-⋅⋅* Input to `libuthread/sem.c`
+* 100% `libuthread/preempt.c` implemention
+* 100% `apps/test_preempt.c` implemention
+* Input to `libuthread/sem.c`
 ⋅⋅⋅ First attempt copied straight from lecture slides, code does not work
 ⋅⋅⋅ Second attempt built upon Aileen's code, passes `sem_simple.c` test case
 ⋅⋅⋅ Work wasn't submit since both worked in parallel and Aileen's code passed
-⋅⋅* Resource collection
+* Resource collection
 
 ## License
 
